@@ -1,0 +1,40 @@
+{
+  "name": "spawn-cli",
+  "version": "0.1.0",
+  "description": "CLI tool for spawning Claude agents in Docker containers",
+  "main": "dist/cli.js",
+  "type": "module",
+  "bin": {
+    "spawn": "bin/spawn"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli.js",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "cli",
+    "docker",
+    "claude",
+    "agent"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^3.3.2",
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "conf": "^12.0.0",
+    "dockerode": "^4.0.2",
+    "editor": "^1.0.0",
+    "enquirer": "^2.4.1",
+    "nanoid": "^5.0.4",
+    "ora": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/dockerode": "^3.3.23",
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3"
+  }
+}
