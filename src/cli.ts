@@ -4,7 +4,7 @@ import { Command } from 'commander';
 import chalk from 'chalk';
 
 // Import command modules
-import { projectCommand } from './commands/project/index.js';
+import { envCommand } from './commands/env/index.js';
 import { workerCommand } from './commands/worker/index.js';
 
 const program = new Command();
@@ -15,7 +15,7 @@ program
   .version('0.1.0');
 
 // Add subcommands
-program.addCommand(projectCommand);
+program.addCommand(envCommand);
 program.addCommand(workerCommand);
 
 // Global error handling

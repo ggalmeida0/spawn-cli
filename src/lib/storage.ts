@@ -1,5 +1,5 @@
 import Conf from 'conf';
-import { Project, Worker } from '../types/index.js';
+import { Env, Worker } from '../types/index.js';
 
 export class Storage {
   private config: any;
@@ -8,7 +8,7 @@ export class Storage {
     this.config = new Conf({
       projectName: 'spawn-cli',
       schema: {
-        projects: {
+        envs: {
           type: 'object',
           default: {}
         },
@@ -20,44 +20,44 @@ export class Storage {
     });
   }
 
-  // Project methods
-  saveProject(project: Project): void {
-    const projects = this.config.get('projects') as Record<string, Project>;
-    projects[project.id] = project;
-    this.config.set('projects', projects);
+  // Env methods
+  saveEnv(env: Env): void {
+    const envs = this.config.get('envs') as Record<string, Env>;
+    envs[env.id] = env;
+    this.config.set('envs', envs);
   }
 
-  getProject(id: string): Project | undefined {
-    const projects = this.config.get('projects') as Record<string, Project>;
-    const project = projects[id];
-    if (project) {
-      project.createdAt = new Date(project.createdAt);
+  getEnv(id: string): Env | undefined {
+    const envs = this.config.get('envs') as Record<string, Env>;
+    const env = envs[id];
+    if (env) {
+      env.createdAt = new Date(env.createdAt);
     }
-    return project;
+    return env;
   }
 
-  getProjectByName(name: string): Project | undefined {
-    const projects = this.config.get('projects') as Record<string, Project>;
-    const project = Object.values(projects).find(p => p.name === name);
-    if (project) {
-      project.createdAt = new Date(project.createdAt);
+  getEnvByName(name: string): Env | undefined {
+    const envs = this.config.get('envs') as Record<string, Env>;
+    const env = Object.values(envs).find(e => e.name === name);
+    if (env) {
+      env.createdAt = new Date(env.createdAt);
     }
-    return project;
+    return env;
   }
 
-  getAllProjects(): Project[] {
-    const projects = this.config.get('projects') as Record<string, Project>;
-    return Object.values(projects).map(project => ({
-      ...project,
-      createdAt: new Date(project.createdAt)
+  getAllEnvs(): Env[] {
+    const envs = this.config.get('envs') as Record<string, Env>;
+    return Object.values(envs).map(env => ({
+      ...env,
+      createdAt: new Date(env.createdAt)
     }));
   }
 
-  deleteProject(id: string): boolean {
-    const projects = this.config.get('projects') as Record<string, Project>;
-    if (projects[id]) {
-      delete projects[id];
-      this.config.set('projects', projects);
+  deleteEnv(id: string): boolean {
+    const envs = this.config.get('envs') as Record<string, Env>;
+    if (envs[id]) {
+      delete envs[id];
+      this.config.set('envs', envs);
       return true;
     }
     return false;
@@ -80,9 +80,9 @@ export class Storage {
     return Object.values(workers);
   }
 
-  getWorkersByProject(projectId: string): Worker[] {
+  getWorkersByEnv(envId: string): Worker[] {
     const workers = this.config.get('workers') as Record<string, Worker>;
-    return Object.values(workers).filter(w => w.projectId === projectId);
+    return Object.values(workers).filter(w => w.envId === envId);
   }
 
   deleteWorker(id: string): boolean {

@@ -11,7 +11,7 @@ export const workerCommand = new Command('worker')
 workerCommand
   .command('create')
   .description('Create a new worker')
-  .requiredOption('--project <id>', 'Project ID or name')
+  .requiredOption('--env <id>', 'Environment ID or name')
   .option('--prompt <prompt>', 'Worker prompt')
   .option('--detached', 'Run in background')
   .action(createWorker);
@@ -19,7 +19,7 @@ workerCommand
 workerCommand
   .command('list')
   .description('List workers')
-  .option('--project <id>', 'Filter by project ID')
+  .option('--env <id>', 'Filter by environment ID')
   .option('--status <status>', 'Filter by status')
   .action(listWorkers);
 

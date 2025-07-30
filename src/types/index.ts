@@ -1,4 +1,4 @@
-export interface Project {
+export interface Env {
   id: string;
   name: string;
   repoUrl: string;
@@ -10,7 +10,7 @@ export interface Project {
 
 export interface Worker {
   id: string;
-  projectId: string;
+  envId: string;
   prompt: string;
   status: 'creating' | 'running' | 'stopped' | 'failed';
   containerId?: string;
@@ -19,12 +19,12 @@ export interface Worker {
 }
 
 export interface WorkerCreateOptions {
-  project: string;
+  env: string;
   prompt?: string;
   detached?: boolean;
 }
 
-export interface ProjectCreateOptions {
+export interface EnvCreateOptions {
   repo: string;
   branch?: string;
   image?: string;
