@@ -54,7 +54,7 @@ spawn env delete my-app
 ### Worker Management (Coming Soon)
 
 ```bash
-# Create worker with inline prompt
+# Create worker with inline prompt (using environment name)
 spawn worker create --env my-app --prompt "Add user authentication"
 
 # Create worker with editor prompt
